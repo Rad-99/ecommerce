@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% block title %}My Orders{% endblock title %}
+{% block main-content %}
+
+<div class="container my-5">
+    <h1 class="text-center mb-5">My Orders</h1>
+
+    <!-- Messages Block -->
+    {% if messages %}
+        <div class="row">
+            <div class="col-md-12">
+                {% for message in messages %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        {% if orders %}
+            {% for order in orders %}
+                <div class="col-md-12 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Order ID: {{ order.order_id }}</h5>
+                            <p>Order Date: {{ order.created_at }}</p>
+                            <p>Total Amount: €. {{ order.total_amount }}</p>
+                            <a href="{% url 'order_confirmation' order.order_id %}" class="btn btn-outline-info btn-sm">View Details</a>
+                            
+                            <!-- Delete Order Form -->
+                            <form method="POST" action="{% url 'delete_order' order.order_id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h3 class="text-center">No orders found.</h3>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock main-content %}

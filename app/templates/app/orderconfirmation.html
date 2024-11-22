@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Order Confirmation{% endblock title %}
+
+{% block main-content %}
+    <h1>Thank You for Your Order!</h1>
+    <p>Your order has been confirmed.</p>
+    <p>Order ID: {{ order_id }}</p> <!-- Assuming you pass order_id in context -->
+    <!-- Add more order details or styling as necessary -->
+{% endblock main-content %}
