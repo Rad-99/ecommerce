@@ -12,7 +12,7 @@ env/
 *.venv
 
 # Django specific
-db.sqlite3
+# db.sqlite3
 
 /staticfiles/
 /*.log
